@@ -13,7 +13,6 @@ cache:
 env:
   global:
     - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-    - BINARYBUILDER_ROOTFS_DIR=rootfs
 sudo: required
 
 # Before anything else, get the latest versions of things
