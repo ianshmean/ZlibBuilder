@@ -36,7 +36,7 @@ platforms = [
 script = raw"""
 cd $WORKSPACE/srcdir
 cd zlib-1.2.11/
-./configure --prefix=/
+./configure --sharedlibdir=/bin --prefix=/
 make install SHAREDLIB=libz.dll SHAREDLIBM=libz-1.dll SHAREDLIBV=libz-1.2.11.dll LDSHAREDLIBC='' -j3
 """
 autobuild(pwd(), "zlib", platforms, sources, script, products)
