@@ -24,8 +24,8 @@ make install -j3
 products = prefix -> [
   LibraryProduct(prefix,"libz"),
 ]
-
-autobuild(pwd(), "zlib", platforms, sources, script, products)
+product_hashes = Dict()
+autobuild(pwd(), "zlib", platforms, sources, script, products, product_hashes)
 
 
 # Special-case windows platforms
@@ -39,5 +39,7 @@ cd zlib-1.2.11/
 ./configure --sharedlibdir=/bin --prefix=/
 make install SHAREDLIB=libz.dll SHAREDLIBM=libz-1.dll SHAREDLIBV=libz-1.2.11.dll LDSHAREDLIBC='' -j3
 """
-autobuild(pwd(), "zlib", platforms, sources, script, products)
+autobuild(pwd(), "zlib", platforms, sources, script, products, product_hashes)
+
+print_buildjl(product_hashes)
 
