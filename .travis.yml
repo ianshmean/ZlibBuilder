@@ -31,7 +31,7 @@ deploy:
     # to make your own: https://docs.travis-ci.com/user/deployment/releases/
     secure: PVMHnTnJ1iXFja5B3OTu0S7jFhoj12Vy7IM6Ua2ugywSPyIaOgqQKK2hTOvjWtR1UEQ/tF9RD50fsAjF/Or+Evweg4HnixSLwyj59eahJXYTKy90Hszu+W2iDZCk1R5/l4VVGDiOHnaXVCPkphUEkytimBSUmRtMnFoZ4GkvneAZ9aGtBJfY8MbNl7ctsshmAL8/9GZMKnde51PiZOE+6CX3yxhJ3GrosU/6niX7P/qQto04a9R809OS6GHOcebzVgpR7YiMYcGtd4r9YYZS6NkHIlm9w7K9BP9fO30qUrUE8BQ56aPoRtL6PK2rKCaEX2LdghqW9CW+LhvVngLa24dreFfyh0h0/tsnVPHnTncZ9cBVPDlAzenRmstJAnsnmmhLAWs8KqH2gR+9FESL1blE6SBMTyZp1OXLqQo8lewyX2Trtg5WB+n5cH423VXH+JBNZRPgKO/bM6v4Th8hBXdQGVnfDDAE4+lAfzwRgt22rpwgphHYa4uXls0UAyGtVjOAjG63FySQguIxhMKdO0xwy2oxatwBi7JZEkRLiL5cpRXQC2dETtwJkin+HNE9pIguaQj2Dfc6UbjomhwCjHYRxrWhF2RvDrLST/eQBpM7voii5+LLDYKS6ubq/po0UqPZ8+bBJc+G4TUVlOIEA6mtc5SXjL8M3TD+Ts2vWJ8=
   file_glob: true
-  file: products/*.tar.gz
+  file: products/*
   skip_cleanup: true
   on:
     repo: staticfloat/ZlibBuilder
