@@ -1,9 +1,12 @@
 using BinaryBuilder
 
+# zlib version
+version = v"1.2.11"
+
 # Collection of sources required to build zlib
 sources = [
-  "https://zlib.net/zlib-1.2.11.tar.gz" =>
-  "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
+    "https://zlib.net/zlib-$(version).tar.gz" =>
+    "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
 ]
 
 # Bash recipe for building across all platforms
@@ -33,4 +36,4 @@ products = prefix -> [
 dependencies = [
 ]
 
-build_tarballs(ARGS, "Zlib", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, "Zlib", version, sources, script, platforms, products, dependencies)
