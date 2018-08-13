@@ -11,8 +11,7 @@ sources = [
 
 # Bash recipe for building across all platforms
 script = raw"""
-cd $WORKSPACE/srcdir
-cd zlib-1.2.11/
+cd $WORKSPACE/srcdir/zlib-*
 
 # On windows platforms, our ./configure and make invocations differ a bit
 if [[ ${target} == *-w64-mingw* ]]; then
@@ -22,6 +21,14 @@ fi
 
 ./configure ${EXTRA_CONFIGURE_FLAGS} --prefix=${prefix}
 make install ${EXTRA_MAKE_FLAGS} -j${nproc}
+
+# Materialize DLL files (https://github.com/bicycle1885/CodecZlib.jl/issues/24).
+if [[ ${target} == *-w64-mingw* ]]; then
+    mkdir ${WORKSPACE}/destdir/tmp
+    cp -L ${WORKSPACE}/destdir/bin/* ${WORKSPACE}/destdir/tmp
+    rm -r ${WORKSPACE}/destdir/bin
+    mv ${WORKSPACE}/destdir/tmp ${WORKSPACE}/destdir/bin
+fi
 """
 
 # Build for ALL THE PLATFORMS!
