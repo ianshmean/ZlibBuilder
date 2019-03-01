@@ -19,7 +19,12 @@ if [[ ${target} == *-w64-mingw* ]]; then
     EXTRA_MAKE_FLAGS="SHAREDLIB=libz.dll SHAREDLIBM=libz-1.dll SHAREDLIBV=libz-1.2.11.dll LDSHAREDLIBC= "
 fi
 
-./configure ${EXTRA_CONFIGURE_FLAGS} --prefix=${prefix}
+if [[ ${target} == *-freebsd* ]]; then
+    cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DCMAKE_TOOLCHAIN_FILE=/opt/${target}/${target}.toolchain
+else
+    ./configure ${EXTRA_CONFIGURE_FLAGS} --prefix=${prefix}
+fi
+
 make install ${EXTRA_MAKE_FLAGS} -j${nproc}
 """
 
