@@ -12,7 +12,7 @@ sources = [
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir/zlib-*
-
+apk add yasm
 # On windows platforms, our ./configure and make invocations differ a bit
 if [[ ${target} == *-w64-mingw* ]]; then
     EXTRA_CONFIGURE_FLAGS="--sharedlibdir=${prefix}/bin"
