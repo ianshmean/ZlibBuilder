@@ -12,7 +12,7 @@ sources = [
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir/zlib-*
-
+apk add yasm
 # On windows platforms, our ./configure and make invocations differ a bit
 if [[ ${target} == *-w64-mingw* ]]; then
     EXTRA_CONFIGURE_FLAGS="--sharedlibdir=${prefix}/bin"
@@ -26,6 +26,25 @@ else
 fi
 
 make install ${EXTRA_MAKE_FLAGS} -j${nproc}
+
+if [[ ! -e ${prefix}/lib/pkgconfig/zlib.pc ]]; then
+    mkdir -p ${prefix}/lib/pkgconfig
+    cat << EOF > $prefix/lib/pkgconfig/zlib.pc
+prefix=${prefix}
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+sharedlibdir=\${libdir}
+includedir=\${prefix}/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.11
+
+Requires:
+Libs: -L\${libdir} -L\${sharedlibdir} -lz
+Cflags: -I\${includedir}
+EOF
+fi
 """
 
 # Build for ALL THE PLATFORMS!
